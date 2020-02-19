@@ -1,0 +1,46 @@
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+        {%- if site.about -%}
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>关于</h2>
+                <p>{{ site.about }}</p>
+            </div>
+        {%- endif -%}
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+                <h2>最近发表</h2>
+                <ul>
+                {%- for post in site.posts limit:4 -%}
+                    <li>
+                        <a class="footer-post" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    </li>
+                {%- endfor -%}
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+                <h2>分类</h2>
+                <ul>
+                {%- for category in site.categories -%}
+                    <li>
+                        <a class="footer-post" href="{{ '/categories/' | append: category.first | relative_url }}">
+                            {{ category.first }}
+                        </a>
+                    </li>
+                {%- endfor -%}
+                </ul>
+            </div>
+        </div>
+    {%- if site.copyright -%}
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    {{ site.copyright }}
+                </div>
+            </div>
+        </div>
+    {%- endif -%}
+    </div>
+</footer>

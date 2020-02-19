@@ -1,0 +1,53 @@
+---
+---
+<!DOCTYPE html>
+<html lang="zh">
+<!-- Head tag -->
+{% include head.html title=page.title %}
+<body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    {% include menu.html %}
+    <div class="container">
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col-sm-12">
+                {% include title-and-logo.html %}
+                <section class="main">
+                    <div class="post">
+                        <div class="post-header">
+                            <h1 class="title">
+                                <a href="{{ page.url }}">{{ page.title }}</a>
+                            </h1>
+                            <div class="post-info">
+                            {%- if page.date -%}
+                                <span class="date">{{ page.date }}</span>
+                            {%- endif -%}
+                            {%- for category in page.categories -%}
+                                <span class="category">
+                                    <a href="{{ '/categories/' | append: category | relative_url }}">{{ category }}</a>
+                                </span>
+                            {%- endfor -%}
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{ content }}
+                        </div>
+                    {%- assign number_of_tags = page.tags | size -%}
+                    {%- if number_of_tags != 0 -%}
+                        <div class="post-tags">
+                            <i class="fa fa-tags" aria-hidden="true"></i>
+                        {%- for tag in page.tags -%}
+                            <a href="{{ '/tags/' | append: tag | relative_url }}">{{ tag }}</a>
+                        {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    {% include footer.html %}
+    {% include after-footer.html %}
+</body>
+</html>

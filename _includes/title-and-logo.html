@@ -1,0 +1,11 @@
+<!--Title and Logo-->
+<header>
+    <div class="logo">
+        <a href="{{ '/' | relative_url }}">
+            <i class="logo-icon fa fa-cube" aria-hidden="true"></i>
+        </a>
+    {%- if include.title -%}
+        <h1 id="main-title" class="title">{{ include.title }}</h1>
+    {%- endif -%}
+    </div>
+</header>

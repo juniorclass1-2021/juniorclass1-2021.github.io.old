@@ -1,0 +1,71 @@
+---
+---
+<!DOCTYPE html>
+<html lang="zh">
+<!-- Head tag -->
+{% include head.html %}
+<body>
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    {% include menu.html %}
+    <div class="container">
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col-sm-12">
+                {% include title-and-logo.html title=site.title %}
+                <section class="main">
+                {%- for post in paginator.posts -%}
+                    <div class="post">
+                        <div class="post-header index">
+                            <h1 class="title">
+                                <a href="{{ post.url }}">{{ post.title }}</a>
+                            </h1>
+                            <div class="post-info">
+                            {%- if post.date -%}
+                                <span class="date">{{ post.date}}</span>
+                            {%- endif -%}
+                            {%- if post.category -%}
+                                <span class="category">
+                                    <a href="{{ '/categories/' | append: post.category | relative_url }}">
+                                        {{ post.category }}
+                                    </a>
+                                </span>
+                            {%- endif -%}
+                            </div>
+                        </div>
+                    {%- if post.excerpt -%}
+                        <div class="content">{{post.excerpt}}</div>
+                    {%- endif -%}
+                        <a href="{{ post.url | relative_url }}" class="read-more">阅读全文</a>
+                    </div>
+                {%- endfor -%}
+                </section>
+            </div>
+        </div>
+    {%- if paginator.previous_page or paginator.next_page -%}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="wrap-pagination">
+                {%- if paginator.previous_page -%}
+                    <a href="{{ paginator.previous_page_path | relative_url }}">
+                {%- else -%}
+                    <a class="disabled">
+                {%- endif -%}
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </a>
+                {%- if paginator.next_page -%}
+                    <a href="{{ paginator.next_page_path | relative_url }}">
+                {%- else -%}
+                    <a class="disabled">
+                {%- endif -%}
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {%- endif -%}
+    </div>
+    {% include footer.html %}
+    {% include after-footer.html %}
+</body>
+</html>
